@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just in case?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="IncaseP">
+    <div class="IndexContent">
+        <div id="mainContent" class="incase-main">
+            <div class="container">
+                <h2>Just in case?</h2>
+            </div>
+            <div class="button-container-In">
+                <a href="twopart.html">
+                    <button id="yesBtn" class="fancy-btn">Sure!</button>
+                </a>
+                <button id="noBtn" class="fancy-btn">Not Today</button>
+            </div>
+        </div>
+
+        <div id="videoContainer" class="incase-video">
+            <video id="myVideo" controls preload="none">
+                <source src="videos/JustIncase.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const noBtn = document.getElementById("noBtn");
+            const mainContent = document.getElementById("mainContent");
+            const videoContainer = document.getElementById("videoContainer");
+            const myVideo = document.getElementById("myVideo");
+
+            noBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                mainContent.style.opacity = 0;
+
+                setTimeout(() => {
+                    mainContent.style.display = "none";
+                    videoContainer.style.display = "block";
+
+                    myVideo.load();
+                    myVideo.muted = true;
+                    myVideo.play().catch(err => {
+                        console.log("Autoplay blocked; user can click play:", err);
+                    });
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
